@@ -1,0 +1,31 @@
+.box {
+  display: flex;
+  width: 6rem;
+  height: 6rem;
+  background-color: #165862;
+  border: 0.2rem solid #93bcc3;
+  color: inherit;
+  font-family: "Mansalva", sans-serif;
+  font-size: 5rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.box:hover {
+  background-color: rgb(19, 47, 53);
+}
+
+.x {
+  color: #a4eaac;
+}
+
+.o {
+  color: #83cbeb;
+}
+
+.win {
+  background-color: #3a3a3a;
+}

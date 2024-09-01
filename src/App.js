@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import { Login } from "./pages/Login/Login";
+import { Game } from "./pages/Game/Game";
+import { ErrorBoundary } from "react-error-boundary";
+import { ErrorFallback } from "./pages/ErrorFallback/ErrorFallback";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="header">
+        <h1>
+          <span className="tic">TIC</span> TAC <span className="toe">TOE</span>
+        </h1>
+      </div>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Routes>
+          <Route path="/" element={<Game />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </ErrorBoundary>
     </div>
   );
 }

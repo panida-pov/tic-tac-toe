@@ -1,0 +1,40 @@
+.login-container {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.login {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  min-width: 15rem;
+  max-width: 25rem;
+  min-height: 8rem;
+  flex-grow: 999;
+}
+
+.rule {
+  width: 65%;
+  max-width: fit-content;
+  padding: 1.5rem;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.rule ol {
+  list-style-position: inside;
+  padding: 0.5rem 0;
+}
+
+.rule li {
+  padding: 0.5rem 0;
+}

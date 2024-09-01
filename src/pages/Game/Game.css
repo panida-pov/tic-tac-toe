@@ -1,0 +1,85 @@
+.username {
+  color: #f4c493;
+}
+
+.greetings {
+  padding: 1rem 0.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.status {
+  visibility: hidden;
+  padding: 0.2rem 0;
+  text-align: center;
+  background-color: #e1f1ff;
+  color: #ee976c;
+}
+
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5%;
+}
+
+.board-section {
+  min-width: 18rem;
+  padding: 0 0.5rem;
+}
+
+.score-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  min-width: 15rem;
+}
+
+.group {
+  min-height: 6rem;
+  font-size: 1.2rem;
+}
+
+.group h3 {
+  padding: 0.5rem;
+}
+
+.reset {
+  width: 100%;
+  height: 80%;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  background-color: #e1b831;
+  color: #343535;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: font-size 0.2s;
+}
+
+.reset:hover {
+  font-size: 1.8rem;
+}
+
+.logout {
+  width: 100%;
+  height: 2.4rem;
+  margin: 0 auto;
+  background-color: #3a3a3a;
+  color: #e1f1ff;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.logout:hover {
+  background-color: #e1b831;
+  color: #3a3a3a;
+}
+
+.score {
+  font-size: 2rem;
+}
