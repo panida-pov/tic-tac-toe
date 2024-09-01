@@ -24,6 +24,75 @@ export const Game = () => {
   const [xPlaying, setXPlaying] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
+
+  // Function used to put marks (O,X) on a board
+  const fillBoard = (boxIndex) => {
+    const updatedBoard = board.map((value, idx) => {
+      if (idx === boxIndex) {
+        return xPlaying ? "X" : "O";
+      } else {
+        return value;
+      }
+    });
+
+    setBoard(updatedBoard);
+
+    // Checking if there is a winner
+    const winner = checkWinner(updatedBoard);
+    setWinner(winner);
+
+    if (winner?.player === "X") {
+      // Player wins
+      setData({
+        score: data.win_streak === 2 ? data.score + 2 : data.score + 1,
+        win_streak: data.win_streak === 2 ? 0 : data.win_streak + 1,
+        last_winner: "player",
+      });
+      setGameOver(true);
+      return;
+    } else if (winner?.player === "O") {
+      // Computer wins
+      setData({
+        score: data.score === 0 ? 0 : data.score - 1,
+        win_streak: 0,
+        last_winner: "computer",
+      });
+      setGameOver(true);
+      return;
+    } else if (move === 9) {
+      // Draw
+      setData({
+        score: data.score,
+        win_streak: 0,
+        last_winner: data.last_winner,
+      });
+      setGameOver(true);
+      return;
+    }
+
+    setMove((prevMove) => prevMove + 1);
+    setXPlaying(!xPlaying);
+  };
+
+  // Function handles player clicking on a box
+  const handleBoxClick = (boxIndex) => {
+    if (board[boxIndex] || !xPlaying) return;
+    fillBoard(boxIndex);
+  };
+
+  const resetBoard = () => {
+    setBoard(Array(9).fill(""));
+    setMove(1);
+    setXPlaying(data.last_winner === "player" ? true : false);
+    setGameOver(false);
+  };
+
+  const handleLogout = () => {
+    googleLogout();
+    sessionStorage.clear();
+    navigate("/login");
+  };
+
   // Fetch data from api on the first render
   useEffect(() => {
     if (!userId || !userName) {
@@ -65,58 +134,9 @@ export const Game = () => {
     }
   }, [data]);
 
-  const fillBoard = (boxIndex) => {
-    const updatedBoard = board.map((value, idx) => {
-      if (idx === boxIndex) {
-        return xPlaying ? "X" : "O";
-      } else {
-        return value;
-      }
-    });
-
-    setBoard(updatedBoard);
-    const winner = checkWinner(updatedBoard);
-    setWinner(winner);
-
-    // Player wins
-    if (winner?.player === "X") {
-      setData({
-        score: data.win_streak === 2 ? data.score + 2 : data.score + 1,
-        win_streak: data.win_streak === 2 ? 0 : data.win_streak + 1,
-        last_winner: "player",
-      });
-      setGameOver(true);
-      return;
-    }
-
-    // Computer wins
-    if (winner?.player === "O") {
-      setData({
-        score: data.score === 0 ? 0 : data.score - 1,
-        win_streak: 0,
-        last_winner: "computer",
-      });
-      setGameOver(true);
-      return;
-    }
-
-    // Draw
-    if (!winner && move === 9) {
-      setData({
-        score: data.score,
-        win_streak: 0,
-        last_winner: data.last_winner,
-      });
-      setGameOver(true);
-      return;
-    }
-
-    setMove((prevMove) => prevMove + 1);
-    setXPlaying(!xPlaying);
-  };
-
-  // Computer randomly fills the board after 1s
+  // Computer play
   useEffect(() => {
+    // Functions
     const botPlay = () => {
       if (move >= 4) {
         const bestMove = checkBestMove(board);
@@ -136,31 +156,13 @@ export const Game = () => {
       fillBoard(emptyBox[randomIdx]);
     };
 
+    // logic
     if (!(xPlaying || gameOver)) {
       setTimeout(() => {
         botPlay();
       }, 1000);
     }
   }, [move, xPlaying, gameOver]);
-
-  const handleBoxClick = (boxIndex) => {
-    // Player can only click on empty box when it's their turn
-    if (board[boxIndex] || !xPlaying) return;
-    fillBoard(boxIndex);
-  };
-
-  const resetBoard = () => {
-    setBoard(Array(9).fill(""));
-    setMove(1);
-    setXPlaying(data.last_winner === "player" ? true : false);
-    setGameOver(false);
-  };
-
-  const handleLogout = () => {
-    googleLogout();
-    sessionStorage.clear();
-    navigate("/login");
-  };
 
   return (
     <div className="container">

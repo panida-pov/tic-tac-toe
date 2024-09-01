@@ -33,7 +33,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem 0.5rem;
-  min-width: 15rem;
+  min-width: 20rem;
 }
 
 .group {
@@ -47,7 +47,7 @@
 
 .reset {
   width: 100%;
-  height: 80%;
+  height: 90%;
   font-size: 1.6rem;
   margin: 0 auto;
   background-color: #e1b831;
@@ -59,7 +59,7 @@
 }
 
 .reset:hover {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
 }
 
 .logout {
