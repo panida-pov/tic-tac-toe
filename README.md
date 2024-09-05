@@ -27,3 +27,11 @@ $ npm run json-server
 ```bash
 $ npm start
 ```
+
+## Screenshots
+* Log in and game rules
+  ![Log in](https://github.com/panida-pov/tic-tac-toe/blob/main/screenshots/login_page.jpg?raw=true)
+* User wins the game
+  ![Win](https://github.com/panida-pov/tic-tac-toe/blob/main/screenshots/win_page.jpg?raw=true)
+* Blank board
+  ![Game](https://github.com/panida-pov/tic-tac-toe/blob/main/screenshots/game_page.jpg?raw=true)
