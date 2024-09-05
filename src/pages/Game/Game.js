@@ -85,6 +85,7 @@ export const Game = () => {
     setMove(1);
     setXPlaying(data.last_winner === "player" ? true : false);
     setGameOver(false);
+    setWinner(null);
   };
 
   const handleLogout = () => {
@@ -186,7 +187,7 @@ export const Game = () => {
           <Board
             board={board}
             onBoxClick={gameOver ? resetBoard : handleBoxClick}
-            winBoxes={null}
+            winBoxes={winner?.winBoxes}
           />
         </div>
         <div className="score-section">
